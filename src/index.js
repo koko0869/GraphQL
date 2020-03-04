@@ -1,5 +1,5 @@
 //GraphQL 배열데이터 실습2
-
+// 참고 블로그 : https://velog.io/@cadenzah/graphql-node-01-introduction
 const { GraphQLServer } = require("graphql-yoga");
 
 // 1

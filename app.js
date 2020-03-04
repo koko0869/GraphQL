@@ -1,5 +1,5 @@
 //GraphQL fakedata.js 실습1
-
+// 참고 블로그: https://engineering.huiseoul.com/%ED%95%9C-%EB%8B%A8%EA%B3%84%EC%94%A9-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EB%8A%94-graphql-421ed6215008
 var express = require("express");
 var graphqlHTTP = require("express-graphql");
 var Graphql = require("graphql");
