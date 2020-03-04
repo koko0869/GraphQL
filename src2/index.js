@@ -1,4 +1,3 @@
-
 // GraphQL 실습4 (Koa + Graphql + mongodb)
 // 참고 블로그 : https://velog.io/@kjs100184/MongoDB-GraphQL-2-CRUD-egjxluhdia
 
@@ -8,11 +7,16 @@
 import Koa from "koa";
 import { ApolloServer, gql } from "apollo-server-koa";
 
-//mongodb
+//model
 import User from "./models/User";
+
 require("dotenv").config();
 import mongoose from "mongoose";
+
+//.env 값 비구조화 할당
 const { PORT, MONGO_URI } = process.env;
+
+// mongodb connect 및 연결체크
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useFindAndModify: false })
   .then(() => {
@@ -22,8 +26,10 @@ mongoose
     console.log(e);
   });
 
+//koa 객체생성
 const app = new Koa();
 
+//GraphQL 스키마 작성 (파일 모듈화 가능)
 const typeDefs = gql`
   type User {
     _id: ID!
@@ -48,7 +54,9 @@ const typeDefs = gql`
   }
 `;
 
+// GraphQL 리졸브 (파일 모듈화 가능)
 const resolvers = {
+  //Query는 조회 및 읽을 때 사용
   Query: {
     async getUser(root, { _id }) {
       return await User.findById(_id);
@@ -57,6 +65,7 @@ const resolvers = {
       return await User.find();
     }
   },
+  //Mutation는 수정 삭제 추가 때 사용
   Mutation: {
     async createUser(root, { input }) {
       return await User.create(input);

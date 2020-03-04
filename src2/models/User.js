@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//기본적인 DAO 작성
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
